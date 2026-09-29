@@ -1,0 +1,33 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python and tooling
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Downloaded documents, generated state and local models
+data/
+*.pkl
+.cache/
+/eval/
+
+# Local drafts and duplicate export bundle
+开源分享/
+复盘*
+*.zip
+
+# OS files
+.DS_Store
+Thumbs.db

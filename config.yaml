@@ -1,0 +1,55 @@
+# DocPulse-RAG 运行配置（路径相对项目根目录）
+
+projects:
+  - name: fastapi
+    repo: https://github.com/tiangolo/fastapi.git
+    # GitHub 不稳定时可自动依次尝试以下镜像（也可自行增删）
+    repo_mirrors:
+      - https://ghproxy.net/https://github.com/tiangolo/fastapi.git
+      - https://mirror.ghproxy.com/https://github.com/tiangolo/fastapi.git
+      - https://gitclone.com/github.com/tiangolo/fastapi.git
+    branch: master
+    docs_glob: "docs/en/docs/**/*.md"
+
+paths:
+  repos_dir: data/repos
+  state_dir: data/state
+
+chunk:
+  parent_max_chars: 1500
+  child_size: 400
+  child_overlap: 50
+
+retrieval:
+  dense_k: 50
+  sparse_k: 50
+  rrf_k: 60
+  rerank_k: 8
+  final_parent_n: 4
+
+# 本地 Embedding / Rerank（无 GPU 时用 small 模型）
+embedding:
+  model: BAAI/bge-small-en-v1.5
+  device: auto  # auto | cpu | cuda
+
+rerank:
+  model: BAAI/bge-reranker-base
+  device: auto
+
+# DeepSeek API（OpenAI 兼容）；model 以控制台为准
+llm:
+  provider: deepseek
+  base_url: https://api.deepseek.com
+  model: deepseek-chat
+  temperature: 0.3
+  max_tokens: 2048
+
+# 本地向量库（ChromaDB，数据落在 data/state/chroma，无需 Docker）
+vector_store:
+  backend: chroma
+  persist_dir: data/state/chroma
+  collection: docpulse_chunks
+
+query_rewrite:
+  rule_expansions: 2
+  llm_expansions: 0  # M4 开启后改为 2
