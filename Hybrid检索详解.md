@@ -1,6 +1,6 @@
 # Hybrid 检索详解
 
-> 本文档基于 **3DocPulse-RAG** 项目源码，系统说明 Hybrid（混合）检索的两条通路——**Dense 稠密向量检索**与 **Sparse 稀疏 BM25 检索**——的索引构建、在线查询流程、核心计算公式，以及 RRF 融合与完整流水线。  
+> 本文档基于 **DocPulse-RAG** 项目源码，系统说明 Hybrid（混合）检索的两条通路——**Dense 稠密向量检索**与 **Sparse 稀疏 BM25 检索**——的索引构建、在线查询流程、核心计算公式，以及 RRF 融合与完整流水线。  
 > 对应代码：`src/docpulse/retrieval/engine.py`、`indexer.py`、`embeddings.py`、`chroma_store.py`、`hybrid.py`、`query_rewrite.py`。
 
 ---
@@ -834,4 +834,4 @@ python -m docpulse ask "..." --no-hybrid
 
 ---
 
-*文档版本：与 3DocPulse-RAG 源码同步，涵盖 M2 阶段 Hybrid 检索实现。*
+*文档版本：与 DocPulse-RAG 源码同步，涵盖 M2 阶段 Hybrid 检索实现。*
